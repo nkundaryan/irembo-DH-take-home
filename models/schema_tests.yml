@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_consultations_fixed
+    description: "Staged/cleaned consultations with timezone fixes and normalized wait time fields."
+    columns:
+      # TODO: add columns and tests as you define the model output
+      # - name: consultation_id
+      #   tests:
+      #     - not_null
+      #     - unique
+      []
+
+  - name: int_referrals_classified
+    description: "Intermediate model that classifies consultations into referral categories."
+    columns:
+      # TODO: add columns and tests as you define the model output
+      # - name: consultation_id
+      #   tests:
+      #     - not_null
+      []
+
