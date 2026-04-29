@@ -1,22 +1,36 @@
 version: 2
 
 models:
+
   - name: stg_consultations_fixed
-    description: "Staged/cleaned consultations with timezone fixes and normalized wait time fields."
+    description: "Cleaned consultations with timezone correction"
+
     columns:
-      # TODO: add columns and tests as you define the model output
-      # - name: consultation_id
-      #   tests:
-      #     - not_null
-      #     - unique
-      []
+
+      - name: consultation_id
+        description: "Ensures one row per consultation for accurate reporting"
+        tests:
+          - not_null
+          - unique
+
+      - name: wait_time_minutes
+        description: "Ensures wait time is present for patient wait time analysis"
+        tests:
+          - not_null
 
   - name: int_referrals_classified
-    description: "Intermediate model that classifies consultations into referral categories."
-    columns:
-      # TODO: add columns and tests as you define the model output
-      # - name: consultation_id
-      #   tests:
-      #     - not_null
-      []
+    description: "Consultations classified into referral types"
 
+    columns:
+
+      - name: consultation_id
+        description: "Ensures one row per consultation for correct aggregation"
+        tests:
+          - not_null
+          - unique
+
+      - name: referral_category
+        description: "Ensures referral categories are valid for clinical reporting"
+        tests:
+          - accepted_values:
+              values: ['doctor_referral', 'patient_requested_only', 'both', 'no_referral']
